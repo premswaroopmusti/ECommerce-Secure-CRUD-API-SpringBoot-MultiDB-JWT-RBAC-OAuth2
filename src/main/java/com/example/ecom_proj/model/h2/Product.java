@@ -1,4 +1,4 @@
-package com.example.ecom_proj.model;
+package com.example.ecom_proj.model.h2;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +21,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String desc;
+    private String description;
     private String brand;
     private BigDecimal price;
     private String category;

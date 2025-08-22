@@ -1,9 +1,12 @@
 package com.example.ecom_proj.controller;
-import com.example.ecom_proj.model.Product;
+import com.example.ecom_proj.model.h2.Product;
 import com.example.ecom_proj.service.ProductService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,11 +19,13 @@ public class ProductController {
         @Autowired
         private ProductService service;
 
+
         @GetMapping("/products")
         public ResponseEntity<List<Product>> getAllProducts(){
                 return new ResponseEntity<>(service.getAllProducts(), HttpStatus.OK);
         }
 
+        @PreAuthorize("hasAuthority('view_products')")
         @GetMapping("/product/{id}")
         public ResponseEntity<Product> getProductById(@PathVariable int id){
                 Product prod = service.getProductById(id);
@@ -33,6 +38,7 @@ public class ProductController {
                 }
         }
 
+        @PreAuthorize("hasAuthority('create_products')")
         @PostMapping("/products")
         public ResponseEntity<?> addProduct(@RequestBody Product prod){
 
@@ -45,6 +51,7 @@ public class ProductController {
                 }
         }
 
+        @PreAuthorize("hasAuthority('update_products')")
         @PutMapping("/product")
         public ResponseEntity<?> updateProduct(@RequestBody Product prod){
 
@@ -57,6 +64,7 @@ public class ProductController {
                 }
         }
 
+        @PreAuthorize("hasAuthority('delete_products')")
         @DeleteMapping("/product/{id}")
         public ResponseEntity<?> deleteProduct(@PathVariable int id) {
                         Product prod1 = service.getProductById(id);
@@ -66,6 +74,11 @@ public class ProductController {
                 } else {
                         return new ResponseEntity<>("Product Not Found", HttpStatus.NOT_FOUND);
                 }
+        }
+
+        @GetMapping("/csrf-token")
+        public CsrfToken getCSRFToken(HttpServletRequest request){
+                return (CsrfToken) request.getAttribute("_csrf");
         }
 
 }
