@@ -1,8 +1,8 @@
 # Secure E-Commerce CRUD API
 
-The Secure E-Commerce CRUD API is a Spring Boot–based backend application designed for managing Products, Orders, and Users with Role-Based Access Control (RBAC).
+The **Secure E-Commerce CRUD API** is a **Spring Boot–based backend application** designed for **managing Products, Orders, and Users with Role-Based Access Control (RBAC).**
 
-It provides secure authentication & authorization using JWT and OAuth2 (Google & GitHub login), while ensuring audit logging for key business actions. The project also integrates multi-database support (PostgreSQL + H2) and is configured with HTTPS/TLS for secure communication.
+It provides **secure authentication & authorization using JWT and OAuth2 (Google & GitHub login)**, while ensuring **audit logging** for key business actions. The project also integrates **multi-database support (PostgreSQL + H2)** and is configured with **HTTPS/TLS** for secure communication.
 
 This project is designed to showcase **enterprise-grade application design** with a focus on **security, scalability, and maintainability.**
 
